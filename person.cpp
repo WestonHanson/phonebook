@@ -21,6 +21,23 @@ Person::Person(const char *name, const char *phone, int level) {
     strcpy(_phone, phone);
     _level = level;
 }
+Person::Person(const Person& person){
+    _name = new char[strlen(person._name) + 1];
+    strcpy(_name, person._name);
+    strcpy(_phone, person._phone);
+    _level = person._level;
+}
+const Person& Person::operator=(const Person& rhs){
+    if (strlen(_name) != strlen(rhs._name)){
+        delete[] _name;
+        _name = new char[strlen(rhs._name) + 1];
+    }
+    strcpy(_name, rhs._name);
+    strcpy(_phone, rhs._phone);
+    _level = rhs._level;
+
+    return *this;
+}
 string Person::ToString()const{
     return string(_name);
 }

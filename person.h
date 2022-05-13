@@ -19,6 +19,8 @@ private:
     int _level;
 public:
     Person(const char* name, const char* phone, int level = 0);
+    Person(const Person& person);
+    const Person& operator=(const Person& rhs);
     ~Person();
     string ToString()const;
     string ToJSON()const;
