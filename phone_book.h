@@ -11,11 +11,13 @@ const int MAX_FRIENDS = 5;
 
 class PhoneBook {
 private:
-    Person _data[MAX_FRIENDS];
+    Person* _data[MAX_FRIENDS];
     size_t _size;
 public:
     PhoneBook();
-    ~PhoneBook(); // ??
+    PhoneBook(const PhoneBook& pb);
+    ~PhoneBook();
+    const PhoneBook& operator=(const PhoneBook& rhs);
     bool AddPerson(const Person& person);
     bool RemovePerson(const char* name);
     Person FindPerson(const char* name)const;

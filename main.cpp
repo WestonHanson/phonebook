@@ -8,6 +8,7 @@ using std::endl;
 void WhatABeautifulName(Person p);
 
 int main() {
+    Person x[6];
     cout << "Starting..." << endl;
     char n[]  = "Abdul";
     char p[] = "4255550909";
