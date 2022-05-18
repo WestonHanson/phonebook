@@ -1,32 +1,29 @@
 #include "person.h"
+#include "phone_book.h"
 
 #include <iostream>
 
 using std::cout;
 using std::endl;
 
-void WhatABeautifulName(Person p);
 
 int main() {
-    Person x[6];
-    cout << "Starting..." << endl;
-    char n[]  = "Abdul";
-    char p[] = "4255550909";
-    Person abdul(n, p, 10);
-    cout << abdul.ToString() << endl;
+    PhoneBook pb;
+    cout << pb.Size() << endl;
+    cout << pb.RemovePerson("Josh") << endl;
+    cout << pb.AddPerson(Person("James", "2065551234", 9)) << endl;
+    cout << pb.AddPerson(Person("Annie", "4255550001", 30)) << endl;
+    cout << pb.AddPerson(Person("Mario", "4255550002", -9)) << endl;
+    cout << pb.AddPerson(Person("Peter", "4255550003", 5)) << endl;
+    cout << pb.AddPerson(Person("Kyra", "4255550014", 1)) << endl;
+    cout << pb.AddPerson(Person("Jenny", "4255550131", -4)) << endl;
+    cout << pb.FindPerson("Annie").ToString() << endl;
+    cout << pb.FindPerson("Jessica").ToString() << endl;
+    cout << pb.ToString() << endl;
+    cout << pb.RemovePerson("Mario") << endl;
+    cout << pb.Size() << endl;
+    cout << pb.ToString() << endl;
 
-    Person jeff("Jeff", "0000000000", -1);
-    jeff = abdul;
 
-    WhatABeautifulName(abdul);
-
-    Person* maria = nullptr;
-
-    maria = new Person("Maria", "4255550001", 100);
-    cout << maria->ToJSON() << endl;
-    delete maria;
     return 0;
-}
-void WhatABeautifulName(Person p){
-    cout << p.ToString() << " is beautiful... on the inside" << endl;
 }

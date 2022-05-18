@@ -5,13 +5,17 @@
 #include "phone_book.h"
 
 #include <cstring>
+#include <sstream>
+
+using std::stringstream;
+
 
 PhoneBook::PhoneBook() {
     _size = 0;
     for (int i = 0; i < MAX_FRIENDS; ++i) {
         _data[i] = nullptr;
     }
-}
+} // https://github.com/csc2430-master/phonebook
 
 PhoneBook::PhoneBook(const PhoneBook &pb) {
     _size = pb._size;
@@ -49,11 +53,25 @@ bool PhoneBook::AddPerson(const Person &person) {
 
 bool PhoneBook::RemovePerson(const char *name) {
     // Find the name position
+    int foundPosition = -1;
+    for (int i = 0; i < _size; ++i) {
+        if (strcmp(name, _data[i]->GetName().c_str()) == 0)
+            foundPosition = i;
+    }
     // if not found, return false
+    if (foundPosition == -1)
+        return false;
     // if found, delete the person in that position
+    delete _data[foundPosition];
     // shift the elements after that position to the "left"
+    for (int i = foundPosition; i < _size - 1; ++i) {
+        _data[i] = _data[i + 1];
+    }
     // set the "last" element to nullptr
+    _data[_size-1] = nullptr;
+    _size--;
     // return true
+    return true;
 }
 
 Person PhoneBook::FindPerson(const char *name) const {
@@ -69,7 +87,15 @@ string PhoneBook::ToJSON() const {
 }
 
 string PhoneBook::ToString() const {
-    return std::string();
+    stringstream ss;
+    ss << "[";
+    for (int i = 0; i < _size; ++i) {
+        if (i != _size - 1)
+            ss << _data[i]->ToString() << ", ";
+        else
+            ss << _data[i]->ToString() << "]";
+    }
+    return ss.str();
 }
 
 istream &PhoneBook::Read(istream &input) {
@@ -78,4 +104,8 @@ istream &PhoneBook::Read(istream &input) {
 
 ostream &PhoneBook::Write(ostream &output) const {
     return output;
+}
+
+size_t PhoneBook::Size() const {
+    return _size;
 }

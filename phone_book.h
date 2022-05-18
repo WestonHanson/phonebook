@@ -25,6 +25,8 @@ public:
     string ToString()const;
     istream& Read(istream& input);
     ostream& Write(ostream& output)const;
+    size_t Size()const;
+
 };
 
 
