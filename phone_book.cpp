@@ -68,7 +68,7 @@ bool PhoneBook::RemovePerson(const char *name) {
         _data[i] = _data[i + 1];
     }
     // set the "last" element to nullptr
-    _data[_size-1] = nullptr;
+    _data[_size-1] = nullptr; // NULL
     _size--;
     // return true
     return true;
