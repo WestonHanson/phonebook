@@ -26,6 +26,7 @@ public:
     istream& Read(istream& input);
     ostream& Write(ostream& output)const;
     size_t Size()const;
+    const Person* GetPerson(size_t index)const;
 
 };
 

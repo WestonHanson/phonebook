@@ -110,3 +110,9 @@ ostream &PhoneBook::Write(ostream &output) const {
 size_t PhoneBook::Size() const {
     return _size;
 }
+
+const Person *PhoneBook::GetPerson(size_t index) const {
+    if (index >= _size)
+        return nullptr;
+    return _data[index];
+}

@@ -53,9 +53,16 @@ int main() {
         }else if (option == 3){
             // List all my friends on the Phonebook
             cout << "My Phonebook has " << pb.Size() << " people" << endl;
-            cout << pb.ToString() << endl;
+            for (int i = 0; i < pb.Size(); ++i) {
+                cout << i  << "\t" << pb.GetPerson(i)->ToString() << endl;
+            }
         }else if (option == 4){
             cout << "List Good Friends" << endl;
+            // Assume >=5 is good friend
+            for (int i = 0; i < pb.Size(); ++i) {
+                if (pb.GetPerson(i)->GetLevel() > 5)
+                    cout << pb.GetPerson(i) ->ToString() << endl;
+             }
         }else if (option == 5){
             cout << "Read from File" << endl;
         }else if (option == 6){
