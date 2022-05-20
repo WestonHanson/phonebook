@@ -93,8 +93,9 @@ string PhoneBook::ToString() const {
         if (i != _size - 1)
             ss << _data[i]->ToString() << ", ";
         else
-            ss << _data[i]->ToString() << "]";
+            ss << _data[i]->ToString();
     }
+    ss << "]";
     return ss.str();
 }
 

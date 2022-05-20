@@ -39,7 +39,9 @@ const Person& Person::operator=(const Person& rhs){
     return *this;
 }
 string Person::ToString()const{
-    return string(_name);
+    stringstream ss;
+    ss << _name << " " << _phone << " " << _level;
+    return ss.str();
 }
 string Person::ToJSON() const {
     stringstream ss;
@@ -49,6 +51,7 @@ string Person::ToJSON() const {
 
 string Person::GetName() const {
     return string(_name);
+
 }
 
 string Person::GetPhone() const {
