@@ -6,8 +6,12 @@
 
 #include <cstring>
 #include <sstream>
+#include <iostream>
 
 using std::stringstream;
+using std::endl;
+using std::ostream;
+using std::istream;
 
 
 PhoneBook::PhoneBook() {
@@ -100,10 +104,18 @@ string PhoneBook::ToString() const {
 }
 
 istream &PhoneBook::Read(istream &input) {
+    Person dummy("","", 0);
+    while (dummy.Read(input))
+        if (!AddPerson(dummy))
+            break;
     return input;
 }
 
 ostream &PhoneBook::Write(ostream &output) const {
+    for (int i = 0; i < _size; ++i) {
+        _data[i]->Write(output);
+        output << endl;
+    }
     return output;
 }
 
