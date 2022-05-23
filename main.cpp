@@ -3,12 +3,15 @@
 
 #include <iostream>
 #include <string>
+#include <fstream>
 
 using std::cout;
 using std::endl;
 using std::cin;
 using std::cerr;
 using std::string;
+using std::ofstream;
+using std::ifstream;
 
 int Menu();
 
@@ -64,9 +67,26 @@ int main() {
                     cout << pb.GetPerson(i) ->ToString() << endl;
              }
         }else if (option == 5){
-            cout << "Read from File" << endl;
+            string filename;
+            cout << "Yo DJ, spin that file: ";
+            cin >> filename;
+            ifstream file(filename);
+            if (file.fail()){
+                cerr << "You have failed me for the last time" << endl;
+                continue;
+            }
+            pb.Read(file);
         }else if (option == 6){
-            cout << "Write to File" << endl;
+            string filename;
+            cout << "Yo, give me your filename: ";
+            cin >> filename;
+            ofstream file(filename);
+            if (file.fail()){
+                cerr << "Could not open file " << filename << endl;
+                continue;
+            }
+            pb.Write(file);
+            file.close();
         }else{
             cerr << "Not an option!" << endl;
         }
