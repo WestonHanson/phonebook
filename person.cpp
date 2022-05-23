@@ -70,12 +70,25 @@ bool Person::Equals(const Person &person) const {
 }
 
 istream &Person::Read(istream &input) {
-    assert(false);
+//    string name, phone;
+//    input >> name >> phone;
+//    if (name.length() != strlen(_name)){
+//        delete[] _name;
+//        _name = new char[name.length() + 1];
+//    }
+//    strcpy(_name, name.c_str());
+//    strcpy(_phone, phone.c_str());
+//    input >> _level;
+    string name, phone;
+    int level;
+    input >> name >> phone >> level;
+    Person temp(name.c_str(),phone.c_str(),level);
+    *this = temp;
     return input;
 }
 
 ostream &Person::Write(ostream &output) const {
-    assert(false);
+    output << _name << " " << _phone << " " << _level;
     return output;
 }
 
