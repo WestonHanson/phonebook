@@ -14,8 +14,10 @@ using std::ostream;
 using std::istream;
 
 
-PhoneBook::PhoneBook() {
+PhoneBook::PhoneBook(size_t capacity) {
     _size = 0;
+    _capacity = capacity;
+    _data = new Person* [_capacity];
     for (int i = 0; i < MAX_FRIENDS; ++i) {
         _data[i] = nullptr;
     }
@@ -23,6 +25,8 @@ PhoneBook::PhoneBook() {
 
 PhoneBook::PhoneBook(const PhoneBook &pb) {
     _size = pb._size;
+    _capacity = pb._capacity;
+    _data = new Person* [_capacity];
     for (int i = 0; i < _size; ++i) {
         _data[i] = new Person(*pb._data[i]);
     }
@@ -32,6 +36,7 @@ PhoneBook::~PhoneBook() {
     for (int i = 0; i < _size; ++i) {
         delete _data[i];
     }
+    delete[] _data;
 }
 
 const PhoneBook &PhoneBook::operator=(const PhoneBook &rhs) {
@@ -40,7 +45,10 @@ const PhoneBook &PhoneBook::operator=(const PhoneBook &rhs) {
     for (int i = 0; i < _size; ++i) {
         delete _data[i];
     }
+    delete[] _data;
     _size = rhs._size;
+    _capacity = rhs._capacity;
+    _data = new Person*[_capacity];
     for (int i = 0; i < _size; ++i) {
         _data[i] = new Person(*rhs._data[i]);
     }
@@ -48,7 +56,7 @@ const PhoneBook &PhoneBook::operator=(const PhoneBook &rhs) {
 }
 
 bool PhoneBook::AddPerson(const Person &person) {
-    if (_size == MAX_FRIENDS)
+    if (_size == _capacity)
         return false;
     _data[_size] = new Person(person);
     _size++;
@@ -127,4 +135,8 @@ const Person *PhoneBook::GetPerson(size_t index) const {
     if (index >= _size)
         return nullptr;
     return _data[index];
+}
+
+size_t PhoneBook::Capacity() const {
+    return _capacity;
 }

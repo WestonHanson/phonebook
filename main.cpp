@@ -16,11 +16,15 @@ using std::ifstream;
 int Menu();
 
 int main() {
-    PhoneBook pb;
+    cout << "How big do you want your phonebook to be: ";
+    size_t number;
+    cin >> number;
+    PhoneBook pb(number);
+
     int option;
     while ((option = Menu()) != 7){
         if (option == 1){
-            if (pb.Size() == MAX_FRIENDS){
+            if (pb.Size() == pb.Capacity()){
                 cout << "Phonebook full, cannot add more" << endl;
                 continue;
             }

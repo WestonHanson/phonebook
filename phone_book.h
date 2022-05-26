@@ -11,10 +11,11 @@ const int MAX_FRIENDS = 5;
 
 class PhoneBook {
 private:
-    Person* _data[MAX_FRIENDS];
+    Person** _data;
     size_t _size;
+    size_t _capacity;
 public:
-    PhoneBook();
+    PhoneBook(size_t capacity);
     PhoneBook(const PhoneBook& pb);
     ~PhoneBook();
     const PhoneBook& operator=(const PhoneBook& rhs);
@@ -26,6 +27,7 @@ public:
     istream& Read(istream& input);
     ostream& Write(ostream& output)const;
     size_t Size()const;
+    size_t Capacity()const;
     const Person* GetPerson(size_t index)const;
 
 };
