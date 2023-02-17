@@ -15,28 +15,28 @@ using std::istream;
 
 
 PhoneBook::PhoneBook(size_t capacity) {
-    _size = 0;
-    _capacity = capacity;
-    _data = new Person* [_capacity];
-    for (int i = 0; i < MAX_FRIENDS; ++i) {
-        _data[i] = nullptr;
-    }
+//    _size = 0;
+//    _capacity = capacity;
+//    _data = new Person* [_capacity];
+//    for (int i = 0; i < MAX_FRIENDS; ++i) {
+//        _data[i] = nullptr;
+//    }
 } // https://github.com/csc2430-master/phonebook
 
 PhoneBook::PhoneBook(const PhoneBook &pb) {
-    _size = pb._size;
-    _capacity = pb._capacity;
-    _data = new Person* [_capacity];
-    for (int i = 0; i < _size; ++i) {
+//    _size = pb._size;
+//    _capacity = pb._capacity;
+//    _data = new Person* [_capacity];
+    for (int i = 0; i < pb._data.size(); ++i) {
         _data[i] = new Person(*pb._data[i]);
     }
 }
 
 PhoneBook::~PhoneBook() {
-    for (int i = 0; i < _size; ++i) {
+    for (int i = 0; i < _data.size(); ++i) {
         delete _data[i];
     }
-    delete[] _data;
+//    delete[] _data;
 }
 
 const PhoneBook &PhoneBook::operator=(const PhoneBook &rhs) {
@@ -45,12 +45,13 @@ const PhoneBook &PhoneBook::operator=(const PhoneBook &rhs) {
     for (int i = 0; i < _size; ++i) {
         delete _data[i];
     }
-    delete[] _data;
-    _size = rhs._size;
-    _capacity = rhs._capacity;
-    _data = new Person*[_capacity];
+    _data.clear();
+//    delete[] _data;
+//    _size = rhs._size;
+//    _capacity = rhs._capacity;
+//    _data = new Person*[_capacity];
     for (int i = 0; i < _size; ++i) {
-        _data[i] = new Person(*rhs._data[i]);
+        _data.push_back(new Person(*rhs._data[i]));
     }
     return *this;
 }

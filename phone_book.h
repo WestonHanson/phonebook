@@ -7,13 +7,14 @@
 
 #include "person.h"
 
-const int MAX_FRIENDS = 5;
+#include <vector>
+using std::vector;
 
 class PhoneBook {
 private:
-    Person** _data;
-    size_t _size;
-    size_t _capacity;
+    vector<Person*> _data; // needs to be Person* because Person doesnt have default constructor
+//    size_t _size;
+//    size_t _capacity;
 public:
     PhoneBook(size_t capacity);
     PhoneBook(const PhoneBook& pb);
