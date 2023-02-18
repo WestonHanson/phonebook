@@ -12,11 +12,9 @@ using std::vector;
 
 class PhoneBook {
 private:
-    vector<Person*> _data; // needs to be Person* because Person doesnt have default constructor
-//    size_t _size;
-//    size_t _capacity;
+    vector<Person*> _data; // needs to be Person* because Person doesn't have default constructor
 public:
-    PhoneBook(size_t capacity);
+    PhoneBook();
     PhoneBook(const PhoneBook& pb);
     ~PhoneBook();
     const PhoneBook& operator=(const PhoneBook& rhs);
@@ -28,7 +26,6 @@ public:
     istream& Read(istream& input);
     ostream& Write(ostream& output)const;
     size_t Size()const;
-    size_t Capacity()const;
     const Person* GetPerson(size_t index)const;
 
 };
