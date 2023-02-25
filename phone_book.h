@@ -27,7 +27,7 @@ public:
     ostream& Write(ostream& output)const;
     size_t Size()const;
     const Person* GetPerson(size_t index)const;
-
+    Person * findInitial(const char *const initial) const;
 };
 
 

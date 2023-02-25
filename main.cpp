@@ -19,7 +19,7 @@ int main() {
     PhoneBook pb;
 
     int option;
-    while ((option = Menu()) != 7){
+    while ((option = Menu()) != 0){
         if (option == 1){
             // Add a Person
             string name, phone;
@@ -73,18 +73,39 @@ int main() {
                 continue;
             }
             pb.Read(file);
-        }else if (option == 6){
+        }else if (option == 6) {
             string filename;
             cout << "Yo, give me your filename: ";
             cin >> filename;
             ofstream file(filename);
-            if (file.fail()){
+            if (file.fail()) {
                 cerr << "Could not open file " << filename << endl;
                 continue;
             }
             pb.Write(file);
             file.close();
-        }else{
+        }
+
+        else if(option == 7){
+            string Initial;
+            Person* tempStore;
+
+            cout << "Type the first letter you want" << endl;
+            cin >> Initial;
+
+            pb.findInitial(Initial.c_str());
+            tempStore = pb.findInitial(Initial.c_str());
+            if(tempStore == nullptr){
+                cout << "Its a null pointer";
+            }
+
+            else{
+                cout << endl;
+                cout << (*tempStore).ToString() << endl;
+            }
+        }
+
+        else{
             cerr << "Not an option!" << endl;
         }
     }
@@ -103,7 +124,8 @@ int Menu(){
         cout << "4. List Good Friends" << endl;
         cout << "5. Read a File" << endl;
         cout << "6. Write a File" << endl;
-        cout << "7. Exit" << endl;
+        cout << "7. Find by Initial" << endl;
+        cout << "8. Exit" << endl;
         cin >> option;
         if (cin.fail()){
             cin.clear();
@@ -113,6 +135,9 @@ int Menu(){
             if (option < 1 || option > 7){
                 cerr << "That option is not in the menu" << endl;
             }else{
+                if(option < 1 || option > 8){
+                    cerr << "That option is not in the menu" << endl;
+                }
                 invalid = false;
             }
         }

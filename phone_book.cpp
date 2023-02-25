@@ -115,4 +115,12 @@ const Person *PhoneBook::GetPerson(size_t index) const {
     return _data[index];
 }
 
+Person *Phonebook::findInitial(const char *const initial) const{
+    for(int i = 0; i < _data.size(); i++){
+        if(initial[o] == _data[i]->GetName().c_str()[0]){
+            return _data[i];
+        }
+    }
+    return nullptr;
+}
 
